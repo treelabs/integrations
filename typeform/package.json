@@ -1,0 +1,28 @@
+{
+    "name": "tree-typeform-integration",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "start": "micro -l tcp://localhost:3000",
+        "dev": "micro-dev",
+        "build": "mkdir -p public && touch public/index.html",
+        "deploy": "now --prod",
+        "now-dev": "now dev --listen 3000"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "es6-promise": "^4.2.8",
+        "faunadb": "^2.10.2",
+        "isomorphic-fetch": "^2.2.1",
+        "lodash": "^4.17.15",
+        "micro": "^9.3.4",
+        "micro-cors": "^0.1.1"
+    },
+    "devDependencies": {
+        "@now/node": "^1.2.0",
+        "micro-dev": "^3.0.0"
+    }
+}

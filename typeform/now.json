@@ -1,0 +1,14 @@
+{
+    "name": "tree-typeform-integration",
+    "version": 2,
+    "public": true,
+    "builds": [
+        {
+            "src": "index.js",
+            "use": "@now/node"
+        }
+    ],
+    "env": {
+        "FAUNADB_TYPEFORM_SECRET_KEY": "@faunadb_typeform_secret_key"
+    }
+}

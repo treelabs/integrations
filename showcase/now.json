@@ -1,0 +1,10 @@
+{
+    "version": 2,
+    "public": true,
+    "builds": [
+        {
+            "src": "index.js",
+            "use": "@now/node"
+        }
+    ]
+}

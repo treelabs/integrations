@@ -1,0 +1,47 @@
+Arguments: 
+  /usr/local/bin/node /usr/local/Cellar/yarn/1.21.1/libexec/bin/yarn.js now-dev
+
+PATH: 
+  /Applications/Sketch.app/Contents/Resources/sketchtool/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin:/Users/michaelfester/Library/Android/sdk/emulator:/Users/michaelfester/Library/Android/sdk/tools:/Users/michaelfester/Library/Android/sdk/tools/bin:/Users/michaelfester/Library/Android/sdk/platform-tools:/Users/michaelfester/Library/Python/3.7/bin
+
+Yarn version: 
+  1.21.1
+
+Node version: 
+  12.13.1
+
+Platform: 
+  darwin x64
+
+Trace: 
+  SyntaxError: /Users/michaelfester/Projects/Tree/integrations/showcase/package.json: Unexpected token } in JSON at position 396
+      at JSON.parse (<anonymous>)
+      at /usr/local/Cellar/yarn/1.21.1/libexec/lib/cli.js:1625:59
+      at Generator.next (<anonymous>)
+      at step (/usr/local/Cellar/yarn/1.21.1/libexec/lib/cli.js:310:30)
+      at /usr/local/Cellar/yarn/1.21.1/libexec/lib/cli.js:321:13
+
+npm manifest: 
+  {
+      "name": "tree-showcase-integration",
+      "version": "1.0.0",
+      "description": "",
+      "main": "index.js",
+      "scripts": {
+          "build": "mkdir -p public && touch public/index.html",
+          "deploy": "now --prod",
+          "now-dev": "now dev --listen 3000"
+      },
+      "keywords": [],
+      "author": "",
+      "license": "ISC",
+      "devDependencies": {
+          "@now/node": "^1.2.0",
+      }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

@@ -12,7 +12,7 @@ export default async (req: NowRequest, res: NowResponse) => {
   }
 
   try {
-    const [user, redirectUri ] = await handleAuthorizationCodeGrant(host, url);
+    const [user, redirectUrl ] = await handleAuthorizationCodeGrant(host, url);
 
     try {
       await saveUser(user);
@@ -24,7 +24,7 @@ export default async (req: NowRequest, res: NowResponse) => {
     }
 
     res.writeHead(302, {
-      'Location': redirectUri
+      'Location': redirectUrl
     });
     res.end();
     return;

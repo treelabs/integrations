@@ -123,8 +123,6 @@ export const handleAuthorizationCodeGrant = async (host: string, path: string): 
   }
 
   const state = fromState(params.state as string);
-  const redirectParams = querystring.stringify({ redirectUri: state.treeAppUrl });
-  const redirectUrl = `https://${host}/success.html#${redirectParams}`
   return [
     {
       userId: state.userId,
@@ -133,6 +131,6 @@ export const handleAuthorizationCodeGrant = async (host: string, path: string): 
         refreshToken: refreshToken
       }
     },
-    redirectUrl
+    state.treeAppUrl
   ];
 }

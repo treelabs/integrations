@@ -28,7 +28,6 @@ export const todaysEvents = async (user: User, timezone: string): Promise<Array<
       timeMax: today.endOf('day').format()
     });
 
-    console.debug('API request: ', `https://www.googleapis.com/calendar/v3/calendars/primary/events?${params}`);
     const response = await axios.get(
       `https://www.googleapis.com/calendar/v3/calendars/primary/events?${params}`,
       {

@@ -1,0 +1,22 @@
+{
+  "name": "todays-agenda",
+  "version": "1.0.0",
+  "description": "Today's agenda pulled from Google calendar",
+  "main": "api/index.js",
+  "scripts": {
+    "build": "./node_modules/.bin/tsc"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^13.9.0",
+    "typescript": "^3.8.3"
+  },
+  "dependencies": {
+    "@now/node": "^1.5.0",
+    "axios": "^0.19.2",
+    "faunadb": "^2.13.1",
+    "moment": "^2.24.0"
+  }
+}

@@ -4,6 +4,7 @@ import { User, TreeRequest, Event } from '../../lib/types';
 import { fetchUser, saveUser } from '../../lib/db';
 import { authorizeUser, getAuthorizeUrl } from '../../lib/oauth';
 import { todaysEvents } from '../../lib/gcal';
+import { verifyTreeRequest } from '../../lib/tree';
 
 const asTreeRequest = (req: NowRequest): TreeRequest => {
   const host = req.headers['host'] as string;
@@ -86,6 +87,12 @@ const mainPage = async (user: User): Promise<object> => {
 export default async (req: NowRequest, res: NowResponse) => {
   if (req.method !== 'POST') {
     res.writeHead(405, 'Not allowed');
+    res.end();
+    return;
+  }
+
+  if (!verifyTreeRequest(req)) {
+    res.writeHead(400, 'Request verification failed');
     res.end();
     return;
   }

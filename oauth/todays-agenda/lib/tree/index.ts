@@ -1,6 +1,18 @@
+import { IncomingMessage } from 'http';
 import axios from 'axios';
-import { TREE_GRAPHQL_URL } from '../config';
+import { parseRequest, verifyHMAC } from 'http-signature';
+import { TREE_GRAPHQL_URL, TREE_CLIENT_SECRET } from '../config';
 import { TreeRequest } from '../types';
+
+export const verifyTreeRequest = (req: IncomingMessage): boolean => {
+  try {
+    const parsed = parseRequest(req, {});
+    return verifyHMAC(parsed, TREE_CLIENT_SECRET);
+  } catch (err) {
+    console.error('Request verification failed: ', err);
+    return false;
+  }
+};
 
 export const getSpaceSlug = async (req: TreeRequest): Promise<string> => {
   try {

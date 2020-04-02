@@ -9,6 +9,7 @@ const getEnv = (e: string, def?: string) => {
 
 export const TREE_GRAPHQL_URL: string = getEnv('TREE_GRAPHQL_URL'); // e.g. https://api.withtree.com/graphql
 export const TREE_APP_URL: string = getEnv('TREE_APP_URL'); // e.g. https://withtree.com
+export const TREE_INTEGRATION_ID: string = getEnv('TREE_INTEGRATION_ID');
 export const TREE_CLIENT_ID: string = getEnv('TREE_CLIENT_ID');
 export const TREE_CLIENT_SECRET: string = getEnv('TREE_CLIENT_SECRET');
 

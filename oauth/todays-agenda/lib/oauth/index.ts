@@ -3,7 +3,7 @@ import querystring from 'querystring';
 import axios from 'axios';
 import {
   TREE_APP_URL,
-  TREE_CLIENT_ID,
+  TREE_INTEGRATION_ID,
   GOOGLE_AUTH_URL,
   GOOGLE_TOKEN_URL,
   GOOGLE_TOKEN_INFO_URL,
@@ -23,7 +23,7 @@ export const getAuthorizeUrl = async (req: TreeRequest): Promise<string> => {
 
   try {
     const slug = await getSpaceSlug(req);
-    treeAppUrl = `${TREE_APP_URL}/${slug}/workspace/${TREE_CLIENT_ID}`;
+    treeAppUrl = `${TREE_APP_URL}/${slug}/workspace/${TREE_INTEGRATION_ID}`;
   } catch (err) {
     console.error('Failed to generate tree app URI. Falling back to ', treeAppUrl);
   }

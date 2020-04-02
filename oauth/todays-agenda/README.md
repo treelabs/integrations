@@ -1,4 +1,4 @@
-# Today's Agenda
+# Tree Integration: Today's Agenda
 
 This example demonstrates how to fetch events from a user's Google calendar via OAuth 2.0.
 

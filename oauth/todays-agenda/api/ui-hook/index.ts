@@ -1,9 +1,9 @@
 import { NowRequest, NowResponse } from '@now/node';
-import moment from 'moment';
+import moment from 'moment-timezone';
 import { User, TreeRequest, Event } from '../../lib/types';
 import { fetchUser, saveUser } from '../../lib/db';
 import { authorizeUser, getAuthorizeUrl } from '../../lib/oauth';
-import { todaysEvents } from '../../lib/gcal';
+import { userTimezone, todaysEvents } from '../../lib/gcal';
 import { verifyTreeRequest } from '../../lib/tree';
 
 const asTreeRequest = (req: NowRequest): TreeRequest => {
@@ -22,18 +22,18 @@ const asTreeRequest = (req: NowRequest): TreeRequest => {
   };
 };
 
-const formatEvent = (event: Event, isFirst?: boolean): Array<any> => {
+const formatEvent = (event: Event, timezone: string, isFirst?: boolean): Array<any> => {
   const blocks = [];
   const eventMessage = `[${event.summary}](${event.htmlLink})`;
 
   if (isFirst) {
     blocks.push(...[
-      { type: 'heading2', value: moment(event.start.dateTime).fromNow() },
+      { type: 'heading2', value: moment.tz(event.start.dateTime, timezone).fromNow() },
       { type: 'text', value: eventMessage },
     ]);
   } else {
     blocks.push(...[
-      { type: 'heading2', value: moment(event.start.dateTime).format('h:mm a') },
+      { type: 'heading2', value: moment.tz(event.start.dateTime, timezone).format('h:mm a') },
       { type: 'text', value: eventMessage }
     ]);
   }
@@ -63,8 +63,9 @@ const authorizePage = async (req: TreeRequest): Promise<object> => {
 
 const mainPage = async (user: User): Promise<object> => {
   let events: Array<Event>;
+  const timezone = await userTimezone(user);
   try {
-    events = await todaysEvents(user);
+    events = await todaysEvents(user, timezone);
   } catch (err) {
     console.error('Failed to fetch events: ', err);
     return [
@@ -76,8 +77,8 @@ const mainPage = async (user: User): Promise<object> => {
     { type: 'heading1', value: 'Today\'s agenda' }
   ];
   if (events.length > 0) {
-    blocks.push(...formatEvent(events[0], true));
-    events.slice(1,).forEach( (event: Event) => blocks.push(...formatEvent(event)) );
+    blocks.push(...formatEvent(events[0], timezone, true));
+    events.slice(1,).forEach( (event: Event) => blocks.push(...formatEvent(event, timezone)) );
   } else {
     blocks.push({ type: 'text', value: 'No agenda. You\'re free today.' });
   }

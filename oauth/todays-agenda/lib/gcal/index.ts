@@ -1,9 +1,9 @@
 import querystring from 'querystring';
 import axios from 'axios';
-import moment from 'moment';
+import moment from 'moment-timezone';
 import { User, Event } from '../types';
 
-const userTimezone = async (user: User): Promise<string> => {
+export const userTimezone = async (user: User): Promise<string> => {
   try {
     const response = await axios.get(
       'https://www.googleapis.com/calendar/v3/users/me/settings/timezone',
@@ -20,15 +20,15 @@ const userTimezone = async (user: User): Promise<string> => {
   }
 };
 
-export const todaysEvents = async (user: User): Promise<Array<Event>> => {
+export const todaysEvents = async (user: User, timezone: string): Promise<Array<Event>> => {
   try {
-    const timezone = await userTimezone(user);
-    const today = moment(new Date()).utcOffset(timezone);
+    const today = moment.tz(new Date(), timezone);
     const params = querystring.stringify({
       timeMin: today.format(),
       timeMax: today.endOf('day').format()
     });
 
+    console.debug('API request: ', `https://www.googleapis.com/calendar/v3/calendars/primary/events?${params}`);
     const response = await axios.get(
       `https://www.googleapis.com/calendar/v3/calendars/primary/events?${params}`,
       {
@@ -39,7 +39,7 @@ export const todaysEvents = async (user: User): Promise<Array<Event>> => {
     );
 
     return (response.data.items as Array<Event>).sort(
-      (a, b) => moment(a.start.dateTime).diff(moment(b.start.dateTime))
+      (a, b) => moment.tz(a.start.dateTime, timezone).diff(moment.tz(b.start.dateTime, timezone))
     );
   } catch (err) {
     throw err;

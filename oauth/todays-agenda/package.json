@@ -1,7 +1,7 @@
 {
-  "name": "todays-agenda",
+  "name": "tree-todays-agenda-integration",
   "version": "1.0.0",
-  "description": "Today's agenda pulled from Google calendar",
+  "description": "Today's agenda pulled from Google Calendar",
   "main": "api/index.js",
   "scripts": {
     "build": "./node_modules/.bin/tsc"

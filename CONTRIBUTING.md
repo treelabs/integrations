@@ -15,7 +15,7 @@ This document contains all the required information and links to resources neede
   - [Platform and Usage Documentation](#platform-and-usage-documentation) - information on contributing to `pages/docs`
   - [Guides](#guides) - information on contributing to `pages/guides`
   - [API Reference](#api-reference) - information on contributing to `pages/docs/api`
-  - [Examples](#examples) - information on contributing to the [Tree Integrations](https://github.com/workwell/integrations) repository
+  - [Examples](#examples) - information on contributing to the [Tree Integrations](https://github.com/treelabs/integrations) repository
   - [Using Components](#using-components) - how to make the most out of pre-built component library
   - [Static Assets](#static-assets) - where to put static assets and how the naming convention works
 
@@ -28,7 +28,7 @@ available at [http://contributor-covenant.org/version/1/4](http://contributor-co
 
 ## Reporting Issues
 
-If you have found a bug, spelling mistake, missing information, or anything related to the Tree documentation that you feel is an issue that should be reported, please create a new issue here on GitHub. For issues relating to examples, please [create an issue on the Integrations repository](https://github.com/workwell/integrations/issues/new).
+If you have found a bug, spelling mistake, missing information, or anything related to the Tree documentation that you feel is an issue that should be reported, please create a new issue here on GitHub. For issues relating to examples, please [create an issue on the Integrations repository](https://github.com/treelabs/integrations/issues/new).
 
 An issue can be raised by clicking the 'Issues' tab at the top of the repository, followed by the Green 'New issue' button. To make this process as easy as possible we have created a few basic templates to choose from, there are, however, often cases that will fall outside of the templates provided.
 
@@ -70,7 +70,7 @@ With the dependencies installed, you should now add a remote path to the officia
 
 To add the remote path for the official git repository, enter the following:
 
-`git remote add upstream git@github.com:workwell/docs.git`
+`git remote add upstream git@github.com:treelabs/docs.git`
 
 This command adds a new remote branch, with the name 'upstream'. If you ever want to pull the recent changes to update your local fork you can use the following command:
 
@@ -199,15 +199,15 @@ We are currently focused on expanding the documentation for the Now platform 2.0
 
 As with the [Platform and Usage Docs](#platform-and-usage-documentation), the API uses MDX, although each file is not an independent page but instead is compiled into a single page, listing the file in the `lib/data/v2/api.js` file.
 
-An example API Reference MDX file: https://github.com/workwell/docs/blob/master/pages/docs/12/hooks/introduction.mdx
+An example API Reference MDX file: https://github.com/treelabs/docs/blob/master/pages/docs/12/hooks/introduction.mdx
 
 ## Examples
 
-The content for the examples section is not contained within this repository. To contribute an example, please head over to the [Tree Integrations](https://github.com/workwell/integrations) repository where you will find all the relevant information to do so.
+The content for the examples section is not contained within this repository. To contribute an example, please head over to the [Tree Integrations](https://github.com/treelabs/integrations) repository where you will find all the relevant information to do so.
 
 ## Using Components
 
-To make the creation of documentation and guides as simple as possible, we have developed a [component library](https://github.com/workwell/docs/tree/master/components). This library allows us to keep the format and appearance of our documentation and guides consistent, making creating new content a breeze!
+To make the creation of documentation and guides as simple as possible, we have developed a [component library](https://github.com/treelabs/docs/tree/master/components). This library allows us to keep the format and appearance of our documentation and guides consistent, making creating new content a breeze!
 
 You can find multiple examples in each page of how to import and use these components, below is an example import statement:
 

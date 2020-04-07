@@ -50,4 +50,4 @@ now
 ## License
 
 The Tree documentation is an open source project released under the [MIT
-License](https://github.com/workwell/integrations/blob/master/LICENSE.md).
+License](https://github.com/treelabs/integrations/blob/master/LICENSE.md).

@@ -4,4 +4,4 @@ This repository contains example integrations that you can use as a base for cre
 
 ## License
 
-The Tree documentation is an open source project released under the [MIT License](https://github.com/workwell/integrations/blob/master/LICENSE.md).
+The Tree documentation is an open source project released under the [MIT License](https://github.com/treelabs/integrations/blob/master/LICENSE.md).

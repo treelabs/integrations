@@ -1,6 +1,7 @@
 # Tree Integration: Links
 
 A [UI Hook](https://treedocs.now.sh/docs/v1/hooks/ui/introduction/) serving a page that [links](https://treedocs.now.sh/docs/v1/blocks/basic/#link) to another page.
+We provide two examples: an `index.js` demonstrating basic links, and an `index2.js` that shows links with parameters.
 
 ## Prerequisites
 
@@ -14,6 +15,8 @@ Run this UI Hook locally with:
 ```bash
 node index.js 3000
 ```
+
+(or substitute `index2.js` for the parameterized example)
 
 Then create a tunnel to localhost on port 3000 using ngrok:
 

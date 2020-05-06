@@ -55,7 +55,7 @@ var page1 = {
                 pageId: '3',
                 params: {
                     'image_name': 'Cute Kitten',
-                    'image_url': 'https://source.unsplash.com/800x600/?kitten',
+                    'image_url': 'kitten',
                 }
             }
         },
@@ -66,7 +66,7 @@ var page1 = {
                 pageId: '3',
                 params: {
                     'image_name': 'A Sweet Puppy',
-                    'image_url': 'https://source.unsplash.com/800x600/?puppy',
+                    'image_url': 'puppy',
                 }
             }
         },
@@ -102,7 +102,7 @@ var makePage3 = (params) => ({
         },
         {
             type: 'image',
-            value: `${params.image_url}`,
+            value: `https://source.unsplash.com/800x600/?${params.image_url}`,
             attrs: {
                 format: 'landscape'
             }

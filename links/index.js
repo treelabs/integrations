@@ -1,4 +1,4 @@
-// An example of links between pages with parameters (params).
+// An example of links between pages.
 var http = require('http');
 var querystring = require('querystring');
 
@@ -16,7 +16,7 @@ var page1 = {
             type: 'link',
             value: 'Go to Page 2',
             attrs: {
-                pageId: '2'
+                path: '2'
             }
         },
         {
@@ -35,7 +35,7 @@ var page1 = {
                 onClick: {
                     action: 'open',
                     payload: {
-                        pageId: '2'
+                        path: '2'
                     }
                 }
             }
@@ -52,22 +52,14 @@ var page1 = {
             type: 'link',
             value: 'Go to Page 3: Kitten',
             attrs: {
-                pageId: '3',
-                params: {
-                    'image_name': 'Cute Kitten',
-                    'image_url': 'kitten',
-                }
+                path: '3/kitten',
             }
         },
         {
             type: 'link',
             value: 'Go to Page 3: Puppy',
             attrs: {
-                pageId: '3',
-                params: {
-                    'image_name': 'A Sweet Puppy',
-                    'image_url': 'puppy',
-                }
+                path: '3/puppy',
             }
         },
     ]
@@ -89,8 +81,8 @@ var page2 = {
     ]
 };
 
-// Page 3 uses two parameters for an image name and URL.
-var makePage3 = (params) => ({
+// Page 3 uses a parameter for an image URL component.
+var makePage3 = (image) => ({
     blocks: [
         {
             type: 'heading2',
@@ -98,11 +90,11 @@ var makePage3 = (params) => ({
         },
         {
             type: 'text',
-            value: `This image is called: ${params.image_name}`
+            value: `This image is called: ${image}`
         },
         {
             type: 'image',
-            value: `https://source.unsplash.com/800x600/?${params.image_url}`,
+            value: `https://source.unsplash.com/800x600/?${image}`,
             attrs: {
                 format: 'landscape'
             }
@@ -134,12 +126,13 @@ var app = http.createServer(function (req, res) {
     });
     req.on('end', function () {
         var body = JSON.parse(payload);
+        var path = body.path || '';
         var page;
-        if (body.page_id === '3') {
-            // parse the parameters from query string such as 'a=b&c=d' to an object such as {a: 'b', c: 'd'}
-            var params = body.params ? querystring.parse(body.params) : {};
-            page = makePage3(params);
-        } else if (body.page_id === '2') {
+        if (path.startsWith('3')) {
+            // parse the image URL
+            var image = path.replace('3/', '');
+            page = makePage3(image);
+        } else if (path.startsWith('2')) {
             page = page2;
         } else {
             page = page1;

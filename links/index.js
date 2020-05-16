@@ -1,6 +1,5 @@
 // An example of links between pages.
 var http = require('http');
-var querystring = require('querystring');
 
 var page1 = {
     blocks: [

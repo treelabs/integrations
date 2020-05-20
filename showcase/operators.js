@@ -109,7 +109,7 @@ exports.page = {
         },
         {
             type: 'callout',
-            value: `Today is day **\${weekday(today())}** of the week. It is **\${${JSON.stringify(WEEKDAYS)}[weekday(today())-1]}**. In 697 days, it will be a **\${${JSON.stringify(WEEKDAYS)}[weekday(addToDate(today(), 697, "days"))]}**, and the 9th digit of π divided by *e* is **\${floor(pow(10, 9) * pi / e) % 10}**. If we replace "Workwell" with "Tree" in "${PHRASE}", we get **"\${replace("${PHRASE}", "Workwell", "Tree")}"**.`,
+            value: `Today is day **\${weekday(today())}** of the week. It is **\${${JSON.stringify(WEEKDAYS)}[weekday(today()) - 1]}**. In 697 days, it will be a **\${${JSON.stringify(WEEKDAYS)}[weekday(addToDate(today(), 697, "days")) - 1]}**, and the 9th digit of π divided by *e* is **\${floor(pow(10, 9) * pi / e) % 10}**. If we replace "Workwell" with "Tree" in "${PHRASE}", we get **"\${replace("${PHRASE}", "Workwell", "Tree")}"**.`,
             attrs: {
                 type: 'info'
             }

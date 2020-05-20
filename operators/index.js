@@ -34,7 +34,7 @@ const page = {
         },
         {
             name: 'eventDate',
-            type: 'date',
+            type: 'daterange',
             value: {
                 startDate: '2020-03-20T00:00:00+01',
                 endDate: '2020-03-24T00:00:00+01',
@@ -74,7 +74,7 @@ const page = {
             type: 'button',
             value: 'Continue',
             attrs: {
-                disabled: '${not(prop("accepted"))}',
+                disabled: '${!@accepted}',
                 onClick: {
                     action: 'notify',
                     payload: {
@@ -86,14 +86,14 @@ const page = {
         },
         {
             type: 'text',
-            value: 'Status: ${if(prop("accepted"), "Thank you!", "Please accept the terms")}',
+            value: 'Status: ${@accepted ? "Thank you!" : "Please accept the terms"}',
         },
         {
             type: 'divider'
         },
         {
             type: 'callout',
-            value: `Today is day **\${weekday(today())}** of the week. It is **\${elementAt(${JSON.stringify(WEEKDAYS)}, weekday(today())-1)}**. In 697 days, it will be a **\${elementAt(${JSON.stringify(WEEKDAYS)}, weekday(addToDate(today(), 697, "days")))}**, and the 9th digit of π divided by *e* is **\${mod(floor(multiply(pow(10,9), divide(pi(), exp()))), 10)}**. If we replace "Workwell" with "Tree" in "${PHRASE}", we get **"\${replace("${PHRASE}", "Workwell", "Tree")}"**.`,
+            value: `Today is day **\${weekday(today())}** of the week. It is **\${${JSON.stringify(WEEKDAYS)}[weekday(today()) - 1]}**. In 697 days, it will be a **\${${JSON.stringify(WEEKDAYS)}[weekday(addToDate(today(), 697, "days"))]}**, and the 9th digit of π divided by *e* is **\${floor(pow(10, 9) * pi / e) % 10}**. If we replace "Workwell" with "Tree" in "${PHRASE}", we get **"\${replace("${PHRASE}", "Workwell", "Tree")}"**.`,
             attrs: {
                 type: 'info'
             }
@@ -119,10 +119,10 @@ const page = {
         {
             type: 'text',
             value: `Event lasts **\${if(
-                    not(isEmpty(get(prop("eventDate"), "endDate"))),
+                    !isEmpty(@eventDate[endDate]),
                     round(dateDifference(
-                        get(prop("eventDate"), "endDate"),
-                        get(prop("eventDate"), "startDate"),
+                        @eventDate[endDate],
+                        @eventDate[startDate],
                         "days"
                     )) + 1,
                     "1"
@@ -147,7 +147,7 @@ const page = {
         },
         {
             type: 'text',
-            value: 'You have selected **${if(isEmpty(prop("hands")), "no", length(prop("hands")))}** hands.',
+            value: 'You have selected **${isEmpty(@hands) ? "no" : length(@hands)}** hands.',
         },
         {
             type: 'divider'
@@ -182,7 +182,7 @@ const page = {
             value: 'Save',
             attrs: {
                 type: 'success',
-                disabled: '${smallerThan(length(prop("name")), 3)}',
+                disabled: '${length(@name) < 3}',
                 onClick: {
                     action: 'notify',
                     payload: {
@@ -194,7 +194,7 @@ const page = {
         },
         {
             type: 'text',
-            value: '${if(smallerThan(length(prop("name")), 3), "Please enter a name with at least 3 letters", "Input is OK 👍")}',
+            value: '${length(@name) < 3 ? "Please enter a name with at least 3 letters" : "Input is OK 👍"}',
             attrs: {
                 appearance: 'light',
                 size: 'small'
@@ -221,7 +221,7 @@ const page = {
             type: 'link',
             value: 'My Item',
             attrs: {
-                iconUrl: `https://img.icons8.com/color/48/000000/\${elementAt(${JSON.stringify(ICONS)}, prop("icon"))}.png`
+                iconUrl: `https://img.icons8.com/color/48/000000/\${${JSON.stringify(ICONS)}[@icon]}.png`
             }
         },
         {
@@ -244,10 +244,10 @@ const page = {
         },
         {
             type: 'image',
-            value: `\${elementAt(${JSON.stringify(IMAGE_URLS)}, prop("image"))}`,
+            value: `\${${JSON.stringify(IMAGE_URLS)}[@image]}`,
             attrs: {
                 format: 'square',
-                caption: `\${elementAt(${JSON.stringify(IMAGE_CAPTIONS)}, prop("image"))}`,
+                caption: `\${${JSON.stringify(IMAGE_CAPTIONS)}[@image]}`,
             }
         }
     ]

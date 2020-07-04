@@ -1,0 +1,17 @@
+{
+    "name": "tree-showcase-integration",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "build": "mkdir -p public && touch public/index.html",
+        "deploy": "now --prod",
+        "now-dev": "now dev --listen 3000"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "@now/node": "^1.2.0"
+    }
+}

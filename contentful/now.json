@@ -1,0 +1,13 @@
+{
+    "version": 2,
+    "public": true,
+    "builds": [
+        {
+            "src": "index.js",
+            "use": "@now/node"
+        }
+    ],
+    "env": {
+        "FAUNADB_CONTENTFUL_SECRET_KEY": "@faunadb_contentful_secret_key"
+    }
+}

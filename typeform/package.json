@@ -17,7 +17,7 @@
         "es6-promise": "^4.2.8",
         "faunadb": "^2.10.2",
         "isomorphic-fetch": "^2.2.1",
-        "lodash": "^4.17.15",
+        "lodash": "^4.17.19",
         "micro": "^9.3.4",
         "micro-cors": "^0.1.1"
     },
